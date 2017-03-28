@@ -26,4 +26,18 @@ public class HelloControllerTest {
                 .andExpect(content().string("3.141592653589793"));
     }
 
+    @Test
+    public void testCalculateEndpoint() throws Exception {
+        this.mvc.perform(get("/math/calculate?operation=subtract&x=4&y=6").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("-2"));
+    }
+
+    @Test
+    public void testSumEndpoint() throws Exception {
+        this.mvc.perform(get("/math/sum?&n=4&n=6").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("10"));
+    }
+
 }
