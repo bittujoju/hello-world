@@ -40,4 +40,13 @@ public class HelloControllerTest {
                 .andExpect(content().string("10"));
     }
 
+    @Test
+    public void testPathVariableEndpoint() throws Exception {
+        int length = 4;
+        int width  = 6;
+        int height = 9;
+        this.mvc.perform(get(String.format("/math/volume/%d/%d/%d", length, width, height)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("216"));;
+    }
 }

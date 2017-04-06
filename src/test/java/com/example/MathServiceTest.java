@@ -23,7 +23,7 @@ public class MathServiceTest {
         listNumbers.add(17);
         mathService.setN(listNumbers);
 
-        assert(mathService.getX() == 12);
+              assert(mathService.getX() == 12);
         assert(mathService.getY() == 14);
         assert(mathService.getN() == listNumbers);
         assert(mathService.getOperation() == "add");

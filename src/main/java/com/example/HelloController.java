@@ -1,9 +1,7 @@
 package com.example;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -42,4 +40,9 @@ public class HelloController {
                 .reduce(0, (a, b) -> a + b);
     }
 
+
+    @RequestMapping("/volume/{length}/{width}/{height}")
+    public int getIndividualParams(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
+        return length * width * height;
+    }
 }
