@@ -60,6 +60,7 @@ public class HelloControllerTest {
         String type = "circle";
         String radius = "4";
         String width = "8";
+        String height = "6";
 
         MockHttpServletRequestBuilder request1 = post("/math/area")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -67,6 +68,12 @@ public class HelloControllerTest {
                 .param("radius", radius);
 
         MockHttpServletRequestBuilder request2 = post("/math/area")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("type", "rectangle")
+                .param("width", width)
+                .param("height", height);
+
+        MockHttpServletRequestBuilder request3 = post("/math/area")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("type", type)
                 .param("width", width);
@@ -76,6 +83,10 @@ public class HelloControllerTest {
                 .andExpect(content().string(String.format("Area of circle with radius 4 is 50.265440.")));
 
         this.mvc.perform(request2)
+                .andExpect(status().isOk())
+                .andExpect(content().string(String.format("Area of 8x6 rectangle is 48.")));
+
+        this.mvc.perform(request3)
                 .andExpect(status().isOk())
                 .andExpect(content().string(String.format("Invalid")));
     }
