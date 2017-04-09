@@ -46,11 +46,11 @@ public class HelloController {
     }
 
     @PostMapping("/area")
-    public String getIndividualParams(@RequestParam String type, @RequestParam(required = false) Integer radius, @RequestParam(required = false) Integer width, @RequestParam(required = false) Integer height) {
-        if (type.equals("circle") && radius != null)
-            return String.format("Area of circle with radius %d is %f.", radius, radius * radius * 3.14159);
-        else if (type.equals("rectangle") && width != null && height != null)
-            return String.format("Area of %dx%d rectangle is %d.", width, height, width * height);
+    public String getObjectParams(AreaService area) {
+        if (area.getType().equals("circle") && area.getRadius() != null)
+            return String.format("Area of circle with radius %d is %f.", area.getRadius(), area.getRadius() * area.getRadius() * 3.14159);
+        else if (area.getType().equals("rectangle") && area.getWidth() != null && area.getHeight() != null)
+            return String.format("Area of %dx%d rectangle is %d.", area.getWidth(), area.getHeight(), area.getWidth() * area.getHeight());
         else
             return String.format("Invalid");
     }
